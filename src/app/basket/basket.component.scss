@@ -1,0 +1,58 @@
+$orange: #FF8001;
+//font-family: "Poppins", sans-serif;
+// font-family: "Bangers", system-ui;
+
+aside {
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 344px;
+    height: calc(100vh - 80px);
+    margin-top: 80px;
+    padding: 32px 16px;
+    background-color: white;
+    box-shadow: 4px 1px 8px 8px rgba(0, 0, 0, 0.1);
+
+
+    .content-box {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        overflow-x: hidden;
+        overflow-y: auto;
+        font-family: "Poppins", sans-serif;
+
+        h2 {
+            font-family: "Poppins", sans-serif;
+            font-weight: 600;
+            font-size: 28px;
+        }
+
+        .empty-basket {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            gap: 16px;
+            text-align: center;
+
+            img {
+                height: 48px;
+                width: 48px;
+                object-fit: cover;
+            }
+
+            span {
+                font-weight: 700;
+                font-size: 22px;
+            }
+
+            p {
+                font-weight: 400;
+                font-size: 15px;
+                margin: 0;
+            }
+        }
+    }
+}
