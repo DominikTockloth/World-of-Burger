@@ -1,5 +1,6 @@
 $orange: #FF8001;
 $bg-span: #EFEDEA;
+$bike: #6cb168;
 //font-family: "Poppins", sans-serif;
 // font-family: "Bangers", system-ui;
 
@@ -30,7 +31,7 @@ $bg-span: #EFEDEA;
         position: relative;
         top: 480px;
         box-sizing: border-box;
-        padding: 30px 100px;
+        padding: 25px 100px;
         font-family: "Poppins", sans-serif;
 
         .headline-box {
@@ -42,6 +43,7 @@ $bg-span: #EFEDEA;
             h3 {
                 font-size: 28px;
                 font-weight: 700;
+                margin: 0;
             }
 
             .about-box {
@@ -65,8 +67,9 @@ $bg-span: #EFEDEA;
                     border-radius: 30px;
                     border: none;
                     cursor: pointer;
-                    &:hover{
-                        background-color:#e0e0df;
+
+                    &:hover {
+                        background-color: #e0e0df;
                     }
                 }
 
@@ -77,6 +80,71 @@ $bg-span: #EFEDEA;
                 }
             }
         }
+
+        .delivery-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            .delivery-icons {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+
+                img {
+                    height: 16px;
+                    width: 16px;
+                    object-fit: cover;
+                }
+
+                .bag {
+                    font-size: 13px;
+                    font-weight: 400;
+                    color: rgb(26, 26, 26);
+                }
+
+                .bike {
+                    font-size: 13px;
+                    font-weight: 400;
+                    color: $bike;
+                }
+            }
+        }
     }
 
+    .search-box {
+        width: 100%;
+        position: relative;
+        margin-top: 25px;
+
+        input {
+            display: flex;
+            align-items: center;
+            border: 1px solid rgb(154, 154, 154);
+            height: 45px;
+            width: 100%;
+            outline: none;
+            border-radius: 30px;
+            box-sizing: border-box;
+            padding: 12px;
+            padding-left: 70px;
+            font-size: 17px;
+            color: #68797D;
+
+            &::placeholder {
+                color: #68797D;
+                font-size: 17px;
+                font-weight: 500;
+            }
+        }
+
+        img {
+            position: absolute;
+            left: 25px;
+            top: 7px;
+            height: 30px;
+            width: 30px;
+            object-fit: cover;
+        }
+    }
 }
