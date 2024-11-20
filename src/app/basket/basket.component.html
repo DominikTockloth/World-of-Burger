@@ -1,28 +1,30 @@
-<aside>
-    <div class="content-box">
-        <h2>Warenkorb</h2>
-
-        <div class="switch-box">
-            <div class="content ma-le-3 selected">
-                <img src="/images/orange-bike.png" alt="orange-bike">
-                <div>
-                    <h5>Lieferung</h5>
-                    <span>ab 16.45 Uhr</span>
+<section class="basket-wrapper">
+    <aside>
+        <div class="content-box">
+            <h2>Warenkorb</h2>
+    
+            <div class="switch-box">
+                <div class="content ma-le-3 selected">
+                    <img src="/images/orange-bike.png" alt="orange-bike">
+                    <div>
+                        <h5>Lieferung</h5>
+                        <span>ab 16.45 Uhr</span>
+                    </div>
+                </div>
+                <div class="content ma-ri-3">
+                    <img src="/images/grab-bag-black.png" alt="takeaway-bag">
+                    <div>
+                        <h5>Abholung</h5>
+                        <span>ab 16.15 Uhr</span>
+                    </div>
                 </div>
             </div>
-            <div class="content ma-ri-3">
-                <img src="/images/grab-bag-black.png" alt="takeaway-bag">
-                <div>
-                    <h5>Abholung</h5>
-                    <span>ab 16.15 Uhr</span>
-                </div>
+    
+            <div class="empty-basket" *ngIf="!isBasketEmpty">
+                <img src="/images/basket.png" alt="basket-img">
+                <span>Fülle deinen Warenkorb</span>
+                <p>Füge einige leckere Gerichte aus der Speisekarte hinzu und bestelle dein Essen.</p>
             </div>
         </div>
-
-        <div class="empty-basket" *ngIf="!isBasketEmpty">
-            <img src="/images/basket.png" alt="basket-img">
-            <span>Fülle deinen Warenkorb</span>
-            <p>Füge einige leckere Gerichte aus der Speisekarte hinzu und bestelle dein Essen.</p>
-        </div>
-    </div>
-</aside>
+    </aside>
+</section>
