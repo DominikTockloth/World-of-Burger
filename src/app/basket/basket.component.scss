@@ -38,7 +38,7 @@ aside {
             align-items: center;
             justify-content: space-between;
             border-radius: 30px;
-            height: 45px;
+            height: 48px;
             box-sizing: border-box;
             background-color: #EFEDEA;
             margin-top: 35px;
@@ -47,7 +47,6 @@ aside {
             .selected {
                 background-color: white;
                 border-radius: 30px;
-                margin-left: 3px;
                 padding: 2px;
             }
 
@@ -58,8 +57,9 @@ aside {
                 gap: 8px;
                 width: 45%;
                 cursor: pointer;
-                &:hover{
-                    
+                border-radius: 30px;
+                &:hover {
+                    background-color: #e7e1d8;
                 }
 
                 img {
@@ -72,8 +72,6 @@ aside {
                     display: flex;
                     flex-direction: column;
                     text-align: center;
-
-
 
                     h5 {
                         font-size: 14px;
@@ -116,4 +114,14 @@ aside {
             }
         }
     }
+}
+
+/********************************  Differnt styles  *************************************/
+
+.ma-le-3{
+    margin-left: 3px;
+}
+
+.ma-ri-3{
+    margin-right: 3px;
 }
