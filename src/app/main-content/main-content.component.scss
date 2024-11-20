@@ -9,7 +9,6 @@ $bike: #6cb168;
     flex-direction: column;
     box-sizing: border-box;
     width: calc(100% - 344px);
-    min-height: 100vh;
     background-color: white;
     position: relative;
     top: 80px;
@@ -17,7 +16,7 @@ $bike: #6cb168;
     overflow-x: auto;
     overflow-y: hidden;
     z-index: 3;
-
+   
     .bg-img {
         position: absolute;
         width: 100%;
