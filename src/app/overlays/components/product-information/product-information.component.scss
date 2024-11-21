@@ -1,0 +1,33 @@
+$orange: #FF8001;
+$bg-span: #EFEDEA;
+$bike: #6cb168;
+//font-family: "Poppins", sans-serif;
+// font-family: "Bangers", system-ui;
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 10;
+
+    .content-box {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        height: 600px;
+        width: 500px;
+        border-radius: 20px;
+
+        .close {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            cursor: pointer;
+        }
+    }
+}

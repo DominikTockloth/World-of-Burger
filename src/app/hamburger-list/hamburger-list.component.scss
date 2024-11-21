@@ -19,6 +19,9 @@ $bike: #6cb168;
         border: 1px solid rgba(0, 0, 0, 0.4);
         border-radius: 15px;
         position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
         font-family: "Poppins", sans-serif;
 
         .title-box {
@@ -26,7 +29,8 @@ $bike: #6cb168;
             gap: 15px;
             align-items: center;
 
-            h4 {
+            h4,
+            .price {
                 font-size: 20px;
                 font-weight: 600;
                 color: black;
@@ -45,5 +49,18 @@ $bike: #6cb168;
                 }
             }
         }
+
+        .description {
+            font-size: 15px;
+            font-weight: 400;
+            color: rgb(26, 25, 25);
+        }
+
+        .price {
+            font-size: 20px;
+            font-weight: 600;
+            color: black;
+        }
+
     }
 }

@@ -1,5 +1,9 @@
 <div class="list-container">
     <div class="list-item" *ngFor="let hamburger of hamburgers">
-        <div class="title-box"><h4>{{hamburger.name}}</h4><span>Produktinfos</span></div>
+        <div class="title-box">
+            <h4>{{hamburger.name}}</h4><span (click)="openProductInfo()">Produktinfos</span>
+        </div>
+        <span class="description">{{hamburger.ingredients}}</span>
+        <span class="price">{{ convertDotToComma(hamburger.price)}} €</span>
     </div>
 </div>

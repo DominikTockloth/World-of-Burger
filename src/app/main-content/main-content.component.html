@@ -20,6 +20,8 @@
         <div class="search-box">
             <img src="/images/search.png" alt=""><input type="search" placeholder="Suche in World of Burger">
         </div>
-        <app-hamburger-list></app-hamburger-list>
+        <app-hamburger-list (productInfoOpened)="openProductInfo()" ></app-hamburger-list>
     </div>
 </section>
+
+<app-product-information *ngIf="isProductInfoOpen" (productInfoClosed)="closeProductInfo()"></app-product-information>
