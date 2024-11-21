@@ -18,6 +18,7 @@ import { NgIf } from '@angular/common';
 })
 export class MainContentComponent {
   isProductInfoOpen: boolean = false;
+  isHeartFilled: boolean = false;
   hamburgers: Hamburger[] = [];
 
   constructor() { }
@@ -27,10 +28,19 @@ export class MainContentComponent {
     document.body.style.overflow = 'hidden';
   }
 
-  closeProductInfo():void{
+  closeProductInfo(): void {
     this.isProductInfoOpen = false;
     document.body.style.overflow = '';
   }
-  
+
+  toggleHeart(): void {
+    this.isHeartFilled = !this.isHeartFilled;
+  }
+
+  get heartImage(): string {
+    return this.isHeartFilled
+      ? '/images/black-heart-filled.png'
+      : '/images/black-heart-empty.png';
+  }
 
 }

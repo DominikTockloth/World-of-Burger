@@ -5,7 +5,7 @@
             <h3>World of Burger</h3>
             <div class="about-box">
                 <button class="button"><img src="/images/info.png" alt="info-icon"> Über uns</button>
-                <span><img src="/images/black-heart-empty.png" alt="empty-heart"></span>
+                <span (click)="toggleHeart()"><img [src]="heartImage" alt="heart"></span>
             </div>
         </div>
         <div class="delivery-info">
