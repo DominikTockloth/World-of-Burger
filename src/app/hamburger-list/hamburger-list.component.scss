@@ -11,6 +11,18 @@ $bike: #6cb168;
     box-sizing: border-box;
     width: 100%;
 
+    .image-box {
+        width: 100%;
+
+        img {
+            height: 150px;
+            width: 100%;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 15px;
+        }
+    }
+
     .list-item {
         width: 100%;
         min-height: 120px;

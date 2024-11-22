@@ -18,15 +18,28 @@ import { MainContentComponent } from '../main-content/main-content.component';
 })
 export class HamburgerListComponent implements OnInit {
   @Output() productInfoOpened = new EventEmitter<void>();
-
+  groupedHamburgers: { category: string; burgers: Hamburger[]; image: string }[] = [];
   isProductInfoOpen: boolean = false;
   hamburgers: Hamburger[] = [];
 
   constructor(private hamburgerservice: HamburgerService) { }
 
   ngOnInit(): void {
-    this.hamburgers = this.hamburgerservice.getHamburgers();
+    const hamburgers = this.hamburgerservice.getHamburgers();
+    this.groupedHamburgers = Object.entries(
+      hamburgers.reduce((groups, hamburger) => {
+        groups[hamburger.category] = groups[hamburger.category] || [];
+        groups[hamburger.category].push(hamburger);
+        return groups;
+      }, {} as { [key: string]: Hamburger[] })
+    ).map(([category, burgers]) => ({
+      category,
+      burgers,
+      image: this.hamburgerservice.getCategoryImage(category),
+    }));
+    
   }
+
 
   convertDotToComma(price: number) {
     return price.toFixed(2).replace('.', ',')
@@ -36,3 +49,6 @@ export class HamburgerListComponent implements OnInit {
     this.productInfoOpened.emit(); // Event auslösen
   }
 }
+
+
+

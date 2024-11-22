@@ -1,5 +1,12 @@
 <div class="list-container">
-    <div class="list-item" *ngFor="let hamburger of hamburgers">
+    <!---------------   burger category image   ---------------------------->
+    <div *ngFor="let group of groupedHamburgers" class="image-box">
+        <img [src]="group.image" alt="{{ group.category }}">
+    </div>
+
+
+    <!---------------   Single burger list item   --------------------------->
+    <div class="list-item" *ngFor="let hamburgers of groupedHamburgers">
         <div class="title-box">
             <h4>{{hamburger.name}}</h4><span (click)="openProductInfo()">Produktinfos</span>
         </div>
