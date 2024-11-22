@@ -7,9 +7,15 @@ $bike: #6cb168;
 .list-container {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 90px;
     box-sizing: border-box;
     width: 100%;
+
+    .group-box {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
 
     .image-box {
         width: 100%;

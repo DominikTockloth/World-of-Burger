@@ -1,16 +1,18 @@
-<div class="list-container">
-    <!---------------   burger category image   ---------------------------->
-    <div *ngFor="let group of groupedHamburgers" class="image-box">
-        <img [src]="group.image" alt="{{ group.category }}">
-    </div>
-
-
-    <!---------------   Single burger list item   --------------------------->
-    <div class="list-item" *ngFor="let hamburgers of groupedHamburgers">
-        <div class="title-box">
-            <h4>{{hamburger.name}}</h4><span (click)="openProductInfo()">Produktinfos</span>
+<div class="list-container" >
+    <div class="group-box" *ngFor="let group of groupedHamburgers">
+        <!---------------   burger category image   ---------------------------->
+        <div class="image-box">
+            <img [src]="group.image" alt="{{ group.category }}">
         </div>
-        <span class="description">{{hamburger.ingredients}}</span>
-        <span class="price">{{ convertDotToComma(hamburger.price)}} €</span>
+
+
+        <!---------------   Single burger list item   --------------------------->
+        <div class="list-item" *ngFor="let burger of group.burgers">
+            <div class="title-box">
+                <h4>{{burger.name}}</h4><span (click)="openProductInfo()">Produktinfos</span>
+            </div>
+            <span class="description">{{burger.ingredients}}</span>
+            <span class="price">{{ convertDotToComma(burger.price)}} €</span>
+        </div>
     </div>
 </div>

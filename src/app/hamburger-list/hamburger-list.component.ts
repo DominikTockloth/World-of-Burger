@@ -1,9 +1,9 @@
-import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output} from '@angular/core';
 import { HamburgerService } from '../services/hamburger.service';
 import { Hamburger } from '../models/hamburger.model';
 import { NgFor, NgIf } from '@angular/common';
 import { ProductInformationComponent } from '../overlays/components/product-information/product-information.component';
-import { MainContentComponent } from '../main-content/main-content.component';
+
 
 @Component({
   selector: 'app-hamburger-list',
@@ -21,23 +21,27 @@ export class HamburgerListComponent implements OnInit {
   groupedHamburgers: { category: string; burgers: Hamburger[]; image: string }[] = [];
   isProductInfoOpen: boolean = false;
   hamburgers: Hamburger[] = [];
+  
 
   constructor(private hamburgerservice: HamburgerService) { }
 
   ngOnInit(): void {
     const hamburgers = this.hamburgerservice.getHamburgers();
-    this.groupedHamburgers = Object.entries(
-      hamburgers.reduce((groups, hamburger) => {
-        groups[hamburger.category] = groups[hamburger.category] || [];
-        groups[hamburger.category].push(hamburger);
-        return groups;
-      }, {} as { [key: string]: Hamburger[] })
-    ).map(([category, burgers]) => ({
-      category,
-      burgers,
-      image: this.hamburgerservice.getCategoryImage(category),
-    }));
-    
+
+  // Gruppenbildung basierend auf Kategorien
+  const grouped = hamburgers.reduce((acc, hamburger) => {
+    acc[hamburger.category] = acc[hamburger.category] || [];
+    acc[hamburger.category].push(hamburger);
+    return acc;
+  }, {} as { [key: string]: Hamburger[] });
+
+  // Zuordnung von Bildern und Kategorien
+  this.groupedHamburgers = Object.entries(grouped).map(([category, burgers]) => ({
+    category,
+    burgers,
+    image: this.hamburgerservice.getCategoryImage(category), // Hole das passende Bild
+  }));
+
   }
 
 
