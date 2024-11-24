@@ -66,14 +66,32 @@ $bike: #6cb168;
             display: flex;
             flex-direction: column;
             width: 100%;
-
+            overflow-x: hidden;
+            overflow-y: scroll;
 
             .content {
                 display: flex;
                 flex-direction: column;
-                padding: 32px;
-                overflow-x: hidden;
-                overflow-y: scroll;
+                padding: 24px;
+                gap: 24px;
+
+                .head {
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                    margin-bottom: 16px;
+
+                    img {
+                        height: 22px;
+                        width: 22px;
+                        object-fit: cover;
+                    }
+
+                    span {
+                        font-size: 16px;
+                        font-weight: 700;
+                    }
+                }
 
                 .delivery {
                     display: flex;
@@ -81,20 +99,47 @@ $bike: #6cb168;
                     align-items: flex-start;
                     margin-top: -15px;
 
-                    .head {
+                    .delivery-time {
                         display: flex;
-                        align-items: center;
-                        gap: 12px;
+                        flex-direction: column;
+                        gap: 8px;
+                        width: 100%;
+                        box-sizing: border-box;
+                        padding: 32px;
+                        border-radius: 20px;
+                        border: 1px solid rgb(42, 42, 42);
+                        background-color: #EFEDEA;
 
-                        img {
-                            height: 22px;
-                            width: 22px;
-                            object-fit: cover;
+                        .day-time {
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            color: rgb(35, 35, 35);
+                            font-size: 12px;
+                            font-weight: 400;
                         }
+                    }
+                }
 
-                        span {
-                            font-size: 16px;
-                            font-weight: 700;
+                .webpage {
+                    display: flex;
+                    justify-content: flex-start;
+                    width: 100%;
+                    box-sizing: border-box;
+                    padding: 32px;
+                    border-radius: 20px;
+                    border: 1px solid rgb(42, 42, 42);
+                    background-color: #EFEDEA;
+
+                    a {
+                        text-decoration: none;
+                        color: rgb(35, 35, 35);
+                        font-size: 16px;
+                        font-weight: 500;
+                        cursor: pointer;
+
+                        &:hover {
+                            text-decoration: underline;
                         }
                     }
                 }
