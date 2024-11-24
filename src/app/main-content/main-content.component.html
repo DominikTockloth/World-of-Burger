@@ -4,7 +4,7 @@
         <div class="headline-box">
             <h3>World of Burger</h3>
             <div class="about-box">
-                <button class="button"><img src="/images/info.png" alt="info-icon"> Über uns</button>
+                <button class="button" (click)="openPageInfo()" ><img src="/images/info.png" alt="info-icon"> Über uns</button>
                 <span (click)="toggleHeart()"><img [src]="heartImage" alt="heart"></span>
             </div>
         </div>
@@ -25,3 +25,4 @@
 </section>
 
 <app-product-information *ngIf="isProductInfoOpen" (productInfoClosed)="closeProductInfo()"></app-product-information>
+<app-page-information *ngIf="isPageInfoOpen" (pageInfoClosed)="closePageInfo()"></app-page-information>

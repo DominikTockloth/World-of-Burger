@@ -13,4 +13,5 @@ export class ProductInformationComponent {
   closeProductInfo(): void {
     this.productInfoClosed.emit(); // Event auslösen
   }
+
 }

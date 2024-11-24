@@ -4,6 +4,7 @@ import { Hamburger } from '../models/hamburger.model';
 import { HamburgerListComponent } from '../hamburger-list/hamburger-list.component';
 import { ProductInformationComponent } from '../overlays/components/product-information/product-information.component';
 import { NgIf } from '@angular/common';
+import { PageInformationComponent } from '../overlays/components/page-information/page-information.component';
 
 @Component({
   selector: 'app-main-content',
@@ -11,6 +12,7 @@ import { NgIf } from '@angular/common';
   imports: [
     HamburgerListComponent,
     ProductInformationComponent,
+    PageInformationComponent,
     NgIf
   ],
   templateUrl: './main-content.component.html',
@@ -18,11 +20,15 @@ import { NgIf } from '@angular/common';
 })
 export class MainContentComponent {
   isProductInfoOpen: boolean = false;
+  isPageInfoOpen: boolean = false;
   isHeartFilled: boolean = false;
   hamburgers: Hamburger[] = [];
 
+  @Output() pageInfoclosed = new EventEmitter<void>();
+
   constructor() { }
 
+  /*****************************  Handles the product-information overlay  ********************/
   openProductInfo(): void {
     this.isProductInfoOpen = true;
     document.body.style.overflow = 'hidden';
@@ -32,7 +38,17 @@ export class MainContentComponent {
     this.isProductInfoOpen = false;
     document.body.style.overflow = '';
   }
+  /***********************************  Handles the page-information overlay  ********************/
+  openPageInfo(): void {
+    this.isPageInfoOpen = true;
+    document.body.style.overflow = 'hidden';
+    //  this.pageInfoOpened.emit();
+  }
+  closePageInfo(): void {
+    this.pageInfoclosed.emit();
+  }
 
+  /*********  Switches the heart icon on main-content to filled and not filled  ********************/
   toggleHeart(): void {
     this.isHeartFilled = !this.isHeartFilled;
   }
