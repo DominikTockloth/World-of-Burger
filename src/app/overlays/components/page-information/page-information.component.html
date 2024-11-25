@@ -22,8 +22,20 @@
                         <div class="day-time"><span>Sonntag:</span><span>16.30 - 22.30 Uhr</span></div>
                     </div>
                 </div>
-                <div class="head"><img src="/images/webpage.png" alt="webpage"><span>Website</span></div>
-                <div class="webpage"><a href="http://dominik-tockloth.de" target="_blank">dominik-tockloth.de</a></div>
+                <div class="delivery">
+                    <div class="head"><img src="/images/webpage.png" alt="webpage"><span>Website</span></div>
+                    <div class="webpage"><a href="http://dominik-tockloth.de" target="_blank">dominik-tockloth.de</a>
+                    </div>
+                </div>
+                <div class="delivery">
+                    <div class="head"><img src="/images/payment.png" alt="payment"><span>Bezahlmethoden</span></div>
+                    <div class="pay-methods">
+                        <div class="pay-box" *ngFor="let img of paymentImages"><img [src]="img"></div>
+                    </div>
+                </div>
+                <div class="delivery">
+                    <div class="head"><img src="/images/imprint.png" alt="payment"><span>Impressum</span></div>
+                </div>
             </div>
         </div>
     </div>
