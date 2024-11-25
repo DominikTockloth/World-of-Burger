@@ -4,7 +4,8 @@
         <div class="headline-box">
             <h3>World of Burger</h3>
             <div class="about-box">
-                <button class="button" (click)="openPageInfo()" ><img src="/images/info.png" alt="info-icon"> Über uns</button>
+                <button class="button" (click)="openPageInfo()"><img src="/images/info.png" alt="info-icon"> Über
+                    uns</button>
                 <span (click)="toggleHeart()"><img [src]="heartImage" alt="heart"></span>
             </div>
         </div>
@@ -20,7 +21,15 @@
         <div class="search-box">
             <img src="/images/search.png" alt=""><input type="search" placeholder="Suche in World of Burger">
         </div>
-        <app-hamburger-list (productInfoOpened)="openProductInfo()" ></app-hamburger-list>
+        <app-hamburger-list (productInfoOpened)="openProductInfo()"></app-hamburger-list>
+        <div class="imprint">
+            <div class="head"><img src="/images/imprint.png" alt="payment"><span>Impressum</span></div>
+            <span>Dominik Tockloth</span>
+            <span>Kaarsterstrasse 148</span>
+            <span>41462 Neuss</span>
+            <a href="mailto:dominik.tockloth@gmx.de">Sende mir eine E-Mail</a>
+        </div>
+
     </div>
 </section>
 

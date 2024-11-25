@@ -9,6 +9,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrl: './page-information.component.scss'
 })
 export class PageInformationComponent {
+  @Output() pageInfoClosed = new EventEmitter<void>();
   paymentImages: string[] = ['/images/card.png', '/images/bitcoin.png', '/images/contactless.png', '/images/pound.png', '/images/euro.png', '/images/rupee.png', '/images/ruble.png',];
   isPageInfoOpen: boolean = false;
 
@@ -17,8 +18,7 @@ export class PageInformationComponent {
     document.body.style.overflow = 'hidden';
   }
   closePageInfo(): void {
-    this.isPageInfoOpen = false;
-    document.body.style.overflow = '';
+    this.pageInfoClosed.emit();
   }
 
 }

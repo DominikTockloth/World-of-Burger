@@ -22,7 +22,7 @@ $bike: #6cb168;
         width: 600px;
         height: 800px;
         box-sizing: border-box;
-        border-radius: 20px;
+        border-radius: 20px 20px 10px 20px;
         font-family: "Poppins", sans-serif;
 
         .headline {
@@ -130,6 +130,12 @@ $bike: #6cb168;
                         border: 1px solid rgb(42, 42, 42);
                         background-color: #EFEDEA;
 
+                        span {
+                            font-size: 14px;
+                            font-weight: 400;
+                            color: rgb(42, 42, 42);
+                        }
+
                         .pay-box {
                             display: flex;
                             align-items: center;
@@ -166,6 +172,35 @@ $bike: #6cb168;
                         font-size: 16px;
                         font-weight: 500;
                         cursor: pointer;
+
+                        &:hover {
+                            text-decoration: underline;
+                        }
+                    }
+                }
+
+                .imprint {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    width: 100%;
+                    box-sizing: border-box;
+                    padding: 32px;
+                    border-radius: 20px;
+                    border: 1px solid rgb(42, 42, 42);
+                    background-color: #EFEDEA;
+
+                    span {
+                        font-size: 14px;
+                        font-weight: 400;
+                        color: rgb(42, 42, 42);
+                    }
+
+                    a {
+                        text-decoration: none;
+                        font-size: 14px;
+                        font-weight: 400;
+                        color: rgb(42, 42, 42);
 
                         &:hover {
                             text-decoration: underline;

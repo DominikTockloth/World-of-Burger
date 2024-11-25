@@ -42,10 +42,11 @@ export class MainContentComponent {
   openPageInfo(): void {
     this.isPageInfoOpen = true;
     document.body.style.overflow = 'hidden';
-    //  this.pageInfoOpened.emit();
   }
+  
   closePageInfo(): void {
-    this.pageInfoclosed.emit();
+    this.isPageInfoOpen = false;
+    document.body.style.overflow = '';
   }
 
   /*********  Switches the heart icon on main-content to filled and not filled  ********************/
