@@ -45,7 +45,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="not-enough" *ngIf="orderDifference >= 25 && cartItems.length > 0">
+                <div class="not-enough" *ngIf="showContent()">
                     <div class="not-enough-content">Benötigter Betrag, um den Mindestbestellwert zu erreichen
                         {{convertToDecimal(orderDifference)}} €</div>
                     <p>Leider kannst du noch nicht bestellen. World of Burger liefert erst ab einem Mindestbestellwert

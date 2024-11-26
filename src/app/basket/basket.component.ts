@@ -12,6 +12,7 @@ import { CartService, CartItem } from '../services/cart.service';
   templateUrl: './basket.component.html',
   styleUrl: './basket.component.scss'
 })
+
 export class BasketComponent implements OnInit {
   isBasketEmpty: boolean = false;
   cartItems: CartItem[] = [];
@@ -28,16 +29,18 @@ export class BasketComponent implements OnInit {
 
   /*************   This handles the basket, display,add and remove items - clear basket ****/
   ngOnInit(): void {
-    this.cartItems = this.cartservice.getCartItems();
-    this.calculateTotal();
-    this.calculateOrderDifference();
+    //Changes of basket get subscribed
+    this.cartservice.cartItems$.subscribe(items => {
+      this.cartItems = items;
+      this.calculateTotal();
+    });
   }
 
 
   /**************  This is for calculating prices of cart   ****************************/
   calculateTotal(): void {
     this.subTotal = this.cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
-    this.total = this.cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    this.total = this.subTotal;
     this.calculateOrderDifference();
   }
 
@@ -49,25 +52,29 @@ export class BasketComponent implements OnInit {
     return value.toFixed(2).replace('.', ',');
   }
 
-  /**************  Increase, decrease and delete items from cart   ************************/
+
+  /**************  Increase, decrease and delete items from cart   ***********************/
   // Add one item to cart
-  increaseItem(product: any): void {
-    const cartItem: CartItem = { ...product, quantity: 1 }; // Standardmäßig 1 Stück
-    this.cartservice.addToCart(cartItem);
-    this.calculateTotal();
-
+  increaseItem(item: CartItem): void {
+    this.cartservice.addToCart({ ...item, quantity: 1 });
   }
 
-  decreaseItem(product: any): void {
-    const cartItem: CartItem = { ...product, quantity: -1 }; // Standardmäßig 1 Stück
-    this.cartservice.addToCart(cartItem);
-    this.calculateTotal();
+  decreaseItem(item: CartItem): void {
+    if (item.quantity > 1) {
+      this.cartservice.addToCart({ ...item, quantity: -1 });
+    } else {
+      this.cartservice.removeFromCart(item.id);
+    }
   }
 
-  deleteItem(product: any) {
-    this.cartservice.removeFromCart(product.id);
-    this.cartItems = this.cartservice.getCartItems();
-    this.calculateTotal();
+  deleteItem(item: CartItem): void {
+    this.cartservice.removeFromCart(item.id);
+  }
+
+
+  // This function displays the order difference, if total is under 25 and cartItems.length is bigger 0 
+  showContent(): boolean {
+    return this.total <= 25 && this.cartItems.length > 0;
   }
 
 

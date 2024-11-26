@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Hamburger } from '../models/hamburger.model';
+import { BehaviorSubject } from 'rxjs';
 
 export interface CartItem {
     id: number;
@@ -13,31 +13,33 @@ export interface CartItem {
 })
 
 export class CartService {
-    private cart: CartItem[] = [];
+    private cartItemsSubject = new BehaviorSubject<CartItem[]>([]);
+    cartItems$ = this.cartItemsSubject.asObservable(); // Beobachtbarer Warenkorb
+    private cartItems: CartItem[] = [];
 
+    addToCart(cartItem: CartItem): void {
+        const existingItem = this.cartItems.find(item => item.id === cartItem.id);
 
-    // Add items to cart
-    addToCart(item: CartItem): void {
-        const existingItem = this.cart.find(cartItem => cartItem.id === item.id);
         if (existingItem) {
-            existingItem.quantity += item.quantity;
+            existingItem.quantity += cartItem.quantity;
         } else {
-            this.cart.push(item);
+            this.cartItems.push(cartItem);
         }
+
+        this.cartItemsSubject.next([...this.cartItems]); // Änderungen weitergeben
     }
 
-    // Delete item from cart
     removeFromCart(itemId: number): void {
-        this.cart = this.cart.filter(item => item.id !== itemId);
+        this.cartItems = this.cartItems.filter(item => item.id !== itemId);
+        this.cartItemsSubject.next([...this.cartItems]); // Änderungen weitergeben
     }
 
-    // Get all added cart items
     getCartItems(): CartItem[] {
-        return this.cart;
+        return [...this.cartItems];
     }
 
-    // Delete complete cart
     clearCart(): void {
-        this.cart = [];
+        this.cartItems = [];
+        this.cartItemsSubject.next([...this.cartItems]);
     }
 }
