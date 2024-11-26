@@ -29,19 +29,34 @@
                 <!-----------------------------   Single basket items starts here   ---------------------------->
                 <div class="item" *ngFor="let item of cartItems">
                     <div class="name"><span class="fs-17">{{item.name}}</span><span
-                            class="fs-16">{{convertToDecimal(item.price)}} €</span>
+                            class="fs-16">{{convertToDecimal(item.price * item.quantity)}} €</span>
                     </div>
                     <div class="quantity-box">
                         <div class="quantity-content">
-                            <div><img src="/images/delete.png" alt="delete-btn" *ngIf="item.quantity === 1">
-                                <img src="/images/remove.png" alt="remove-btn" *ngIf="item.quantity > 1"></div>
+                            <div><img src="/images/delete.png" alt="delete-btn" (click)="deleteItem(item)"
+                                    *ngIf="item.quantity === 1">
+                                <img src="/images/remove.png" alt="remove-btn" (click)="decreaseItem(item)"
+                                    *ngIf="item.quantity > 1">
+                            </div>
+
                             <span>{{item.quantity}}</span>
-                            <div><img src="/images/add-btn-black.png" alt="add-button"></div>
+                            <div (click)="increaseItem(item)"><img src="/images/add-btn-black.png" alt="add-button">
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div class="not-enough" *ngIf="orderDifference >= 25 && cartItems.length > 0">
+                    <div class="not-enough-content">Benötigter Betrag, um den Mindestbestellwert zu erreichen
+                        {{convertToDecimal(orderDifference)}} €</div>
+                    <p>Leider kannst du noch nicht bestellen. World of Burger liefert erst ab einem Mindestbestellwert
+                        von 25,00 € (exkl. Lieferkosten).</p>
+                </div>
             </div>
-
+            <!----------------------------------  Total price segment starts here  ------------------------------>
+            <div class="price-box" *ngIf="cartItems.length > 0">
+                <div class="sub-total"><span>Zwischensumme</span><span>{{convertToDecimal(subTotal)}}</span></div>
+                <div class="total"><span>Gesamt</span><span>{{convertToDecimal(total)}}</span></div>
+            </div>
         </div>
     </aside>
 </section>

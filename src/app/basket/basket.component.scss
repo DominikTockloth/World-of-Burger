@@ -116,6 +116,30 @@ $bike: #6cb168;
                     margin: 0;
                 }
             }
+
+            .price-box {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                width: 100%;
+                margin-top: 30px;
+
+                .sub-total {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+
+                }
+
+                .total {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    border-top: 1px solid #999999;
+                    font-weight: 600;
+                    color: black;
+                }
+            }
         }
 
         .basket-item-content {
@@ -125,14 +149,20 @@ $bike: #6cb168;
             gap: 12px;
             overflow-y: auto;
             overflow-x: hidden;
-            min-height: 700px;
+            max-height: 500px;
 
             .item {
                 display: flex;
                 flex-direction: column;
                 gap: 8px;
-                border-bottom: 1px solid #999999;
+                border-top: 1px solid #999999;
                 min-height: 80px;
+                padding-top: 8px;
+
+                &:first-child {
+                    border-top: none;
+                    padding-top: unset;
+                }
 
                 .name {
                     display: flex;
@@ -197,6 +227,24 @@ $bike: #6cb168;
                     }
                 }
             }
+
+            .not-enough {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+                text-wrap: wrap;
+                font-size: 12px;
+
+                .not-enough-content {
+                    display: flex;
+                    text-wrap: wrap;
+                    background-color: #FFF9DF;
+                    padding: 12px;
+                    border-radius: 12px;
+                }
+            }
+
         }
     }
 }

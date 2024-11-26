@@ -26,11 +26,11 @@ export class CartService {
         }
     }
 
-
     // Delete item from cart
     removeFromCart(itemId: number): void {
         this.cart = this.cart.filter(item => item.id !== itemId);
     }
+
     // Get all added cart items
     getCartItems(): CartItem[] {
         return this.cart;

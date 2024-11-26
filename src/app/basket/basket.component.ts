@@ -16,7 +16,9 @@ export class BasketComponent implements OnInit {
   isBasketEmpty: boolean = false;
   cartItems: CartItem[] = [];
   total: number = 0;
-
+  subTotal: number = 0;
+  minTotal: number = 25;
+  orderDifference: number = 0;
   constructor(
     private renderer: Renderer2,
     private el: ElementRef,
@@ -28,18 +30,46 @@ export class BasketComponent implements OnInit {
   ngOnInit(): void {
     this.cartItems = this.cartservice.getCartItems();
     this.calculateTotal();
+    this.calculateOrderDifference();
   }
 
 
-  /**************  This is for calculating total sum of cart   ****************************/
+  /**************  This is for calculating prices of cart   ****************************/
   calculateTotal(): void {
-
+    this.subTotal = this.cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    this.total = this.cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    this.calculateOrderDifference();
   }
 
-  
+  calculateOrderDifference(): void {
+    this.orderDifference = this.minTotal - this.total;
+  }
+
   convertToDecimal(value: number): string {
     return value.toFixed(2).replace('.', ',');
   }
+
+  /**************  Increase, decrease and delete items from cart   ************************/
+  // Add one item to cart
+  increaseItem(product: any): void {
+    const cartItem: CartItem = { ...product, quantity: 1 }; // Standardmäßig 1 Stück
+    this.cartservice.addToCart(cartItem);
+    this.calculateTotal();
+
+  }
+
+  decreaseItem(product: any): void {
+    const cartItem: CartItem = { ...product, quantity: -1 }; // Standardmäßig 1 Stück
+    this.cartservice.addToCart(cartItem);
+    this.calculateTotal();
+  }
+
+  deleteItem(product: any) {
+    this.cartservice.removeFromCart(product.id);
+    this.cartItems = this.cartservice.getCartItems();
+    this.calculateTotal();
+  }
+
 
   /*************   This handles the sticky basket on scroll   *****************************/
   @HostListener('window:scroll', [])
