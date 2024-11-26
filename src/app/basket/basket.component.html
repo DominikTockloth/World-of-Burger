@@ -19,13 +19,27 @@
                     </div>
                 </div>
             </div>
+            <!--------------------------   Content for ordering starts here  ---------------------------->
             <div class="basket-item-content">
-                <div class="empty-basket" *ngIf="!isBasketEmpty">
+                <div class="empty-basket" *ngIf="cartItems.length === 0">
                     <img src="/images/basket.png" alt="basket-img">
                     <span>Fülle deinen Warenkorb</span>
                     <p>Füge einige leckere Gerichte aus der Speisekarte hinzu und bestelle dein Essen.</p>
                 </div>
-
+                <!-----------------------------   Single basket items starts here   ---------------------------->
+                <div class="item" *ngFor="let item of cartItems">
+                    <div class="name"><span class="fs-17">{{item.name}}</span><span
+                            class="fs-16">{{convertToDecimal(item.price)}} €</span>
+                    </div>
+                    <div class="quantity-box">
+                        <div class="quantity-content">
+                            <div><img src="/images/delete.png" alt="delete-btn" *ngIf="item.quantity === 1">
+                                <img src="/images/remove.png" alt="remove-btn" *ngIf="item.quantity > 1"></div>
+                            <span>{{item.quantity}}</span>
+                            <div><img src="/images/add-btn-black.png" alt="add-button"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </div>

@@ -1,21 +1,47 @@
-import { NgIf } from '@angular/common';
-import { Component, ElementRef, HostListener, Renderer2 } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
+import { Component, ElementRef, HostListener, OnInit, Renderer2 } from '@angular/core';
+import { CartService, CartItem } from '../services/cart.service';
 
 @Component({
   selector: 'app-basket',
   standalone: true,
   imports: [
     NgIf,
-
+    NgFor
   ],
   templateUrl: './basket.component.html',
   styleUrl: './basket.component.scss'
 })
-export class BasketComponent {
+export class BasketComponent implements OnInit {
   isBasketEmpty: boolean = false;
+  cartItems: CartItem[] = [];
+  total: number = 0;
 
-  constructor(private renderer: Renderer2, private el: ElementRef) { }
+  constructor(
+    private renderer: Renderer2,
+    private el: ElementRef,
+    private cartservice: CartService
+  ) { }
 
+
+  /*************   This handles the basket, display,add and remove items - clear basket ****/
+  ngOnInit(): void {
+    this.cartItems = this.cartservice.getCartItems();
+    this.calculateTotal();
+  }
+
+
+  /**************  This is for calculating total sum of cart   ****************************/
+  calculateTotal(): void {
+
+  }
+
+  
+  convertToDecimal(value: number): string {
+    return value.toFixed(2).replace('.', ',');
+  }
+
+  /*************   This handles the sticky basket on scroll   *****************************/
   @HostListener('window:scroll', [])
   onWindowScroll() {
     const basket = this.el.nativeElement.querySelector('#basketWrapper');

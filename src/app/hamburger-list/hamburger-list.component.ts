@@ -1,8 +1,9 @@
-import { Component, EventEmitter, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { HamburgerService } from '../services/hamburger.service';
 import { Hamburger } from '../models/hamburger.model';
 import { NgFor, NgIf } from '@angular/common';
 import { ProductInformationComponent } from '../overlays/components/product-information/product-information.component';
+import { CartItem, CartService } from '../services/cart.service';
 
 
 @Component({
@@ -21,30 +22,35 @@ export class HamburgerListComponent implements OnInit {
   groupedHamburgers: { category: string; burgers: Hamburger[]; image: string }[] = [];
   isProductInfoOpen: boolean = false;
   hamburgers: Hamburger[] = [];
-  
 
-  constructor(private hamburgerservice: HamburgerService) { }
+
+  constructor(private hamburgerservice: HamburgerService, private cartservice: CartService) { }
 
   ngOnInit(): void {
     const hamburgers = this.hamburgerservice.getHamburgers();
 
-  // Gruppenbildung basierend auf Kategorien
-  const grouped = hamburgers.reduce((acc, hamburger) => {
-    acc[hamburger.category] = acc[hamburger.category] || [];
-    acc[hamburger.category].push(hamburger);
-    return acc;
-  }, {} as { [key: string]: Hamburger[] });
+    // Group burgers by its category
+    const grouped = hamburgers.reduce((acc, hamburger) => {
+      acc[hamburger.category] = acc[hamburger.category] || [];
+      acc[hamburger.category].push(hamburger);
+      return acc;
+    }, {} as { [key: string]: Hamburger[] });
 
-  // Zuordnung von Bildern und Kategorien
-  this.groupedHamburgers = Object.entries(grouped).map(([category, burgers]) => ({
-    category,
-    burgers,
-    image: this.hamburgerservice.getCategoryImage(category), // Hole das passende Bild
-  }));
-
+    // Get the category image by checking the burger category
+    this.groupedHamburgers = Object.entries(grouped).map(([category, burgers]) => ({
+      category,
+      burgers,
+      image: this.hamburgerservice.getCategoryImage(category), // Hole das passende Bild
+    }));
   }
 
+  // Add one item to cart
+  addToCart(product: any): void {
+    const cartItem: CartItem = { ...product, quantity: 1 }; // Standardmäßig 1 Stück
+    this.cartservice.addToCart(cartItem);
+  }
 
+  // Replaces the dot with the comma
   convertDotToComma(price: number) {
     return price.toFixed(2).replace('.', ',')
   }

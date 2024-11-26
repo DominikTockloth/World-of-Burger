@@ -43,7 +43,7 @@ $bike: #6cb168;
                 box-sizing: border-box;
                 background-color: #EFEDEA;
                 margin-top: 35px;
-                margin-bottom: 45px;
+                margin-bottom: 35px;
 
                 .selected {
                     background-color: white;
@@ -97,6 +97,7 @@ $bike: #6cb168;
                 flex-direction: column;
                 gap: 16px;
                 text-align: center;
+                margin-top: 80px;
 
                 img {
                     height: 48px;
@@ -121,10 +122,81 @@ $bike: #6cb168;
             width: 100%;
             display: flex;
             flex-direction: column;
+            gap: 12px;
             overflow-y: auto;
             overflow-x: hidden;
-            margin-top: 80px;
-            min-height: 600px;
+            min-height: 700px;
+
+            .item {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                border-bottom: 1px solid #999999;
+                min-height: 80px;
+
+                .name {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+
+                    .fs-17 {
+                        font-size: 17px;
+                        font-weight: 500;
+                        color: rgb(19, 19, 19);
+                    }
+
+                    .fs-16 {
+                        font-size: 16px;
+                        font-weight: 400;
+                        color: rgb(24, 24, 24);
+                    }
+                }
+
+                .quantity-box {
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-end;
+
+
+                    .quantity-content {
+                        width: 110px;
+                        height: 35px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        background-color: $bg-span;
+                        border-radius: 20px;
+                        box-sizing: border-box;
+
+                        span {
+                            font-size: 14px;
+                            font-weight: 500;
+
+                        }
+
+                        div {
+                            border-radius: 100%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            box-sizing: border-box;
+                            padding: 8px;
+                            cursor: pointer;
+
+                            &:hover {
+                                background-color: #e7e1d8;
+                            }
+
+                            img {
+                                height: 22px;
+                                width: 22px;
+                                object-fit: cover;
+
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
