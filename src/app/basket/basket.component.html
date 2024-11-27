@@ -54,8 +54,10 @@
             </div>
             <!----------------------------------  Total price segment starts here  ------------------------------>
             <div class="price-box" *ngIf="cartItems.length > 0">
-                <div class="sub-total"><span>Zwischensumme</span><span>{{convertToDecimal(subTotal)}}</span></div>
-                <div class="total"><span>Gesamt</span><span>{{convertToDecimal(total)}}</span></div>
+                <div class="sub-total"><span>Zwischensumme</span><span>{{convertToDecimal(subTotal)}} €</span></div>
+                <div class="sub-total ma-top-10" *ngIf="subTotal >= 25"><span>Lieferung</span><span>Kostenlos</span></div>
+                <div class="total"><span>Gesamt</span><span>{{convertToDecimal(total)}} €</span></div>
+                <button [class.enabled]="total >= 25" [disabled]="total < 25">Bezahlen ({{convertToDecimal(total)}} €) </button>
             </div>
         </div>
     </aside>

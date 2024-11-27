@@ -1,4 +1,4 @@
-import { NgFor, NgIf } from '@angular/common';
+import { NgClass, NgFor, NgIf } from '@angular/common';
 import { Component, ElementRef, HostListener, OnInit, Renderer2 } from '@angular/core';
 import { CartService, CartItem } from '../services/cart.service';
 
@@ -7,13 +7,15 @@ import { CartService, CartItem } from '../services/cart.service';
   standalone: true,
   imports: [
     NgIf,
-    NgFor
+    NgFor,
+    NgClass
   ],
   templateUrl: './basket.component.html',
   styleUrl: './basket.component.scss'
 })
 
 export class BasketComponent implements OnInit {
+  isSelected: boolean = true;
   isBasketEmpty: boolean = false;
   cartItems: CartItem[] = [];
   total: number = 0;
@@ -77,7 +79,15 @@ export class BasketComponent implements OnInit {
     return this.total <= 25 && this.cartItems.length > 0;
   }
 
-
+  // This function toggles the delivery or takeaway switch
+  toggleTakeOrDeliver() {
+    if (!this.isSelected) {
+      this.isSelected = true;
+    }
+    else {
+      this.isSelected = false;
+    }
+  }
   /*************   This handles the sticky basket on scroll   *****************************/
   @HostListener('window:scroll', [])
   onWindowScroll() {
