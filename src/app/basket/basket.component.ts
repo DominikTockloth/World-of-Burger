@@ -80,13 +80,8 @@ export class BasketComponent implements OnInit {
   }
 
   // This function toggles the delivery or takeaway switch
-  toggleTakeOrDeliver() {
-    if (!this.isSelected) {
-      this.isSelected = true;
-    }
-    else {
-      this.isSelected = false;
-    }
+  toggleSelected() {
+    this.isSelected = !this.isSelected;
   }
   /*************   This handles the sticky basket on scroll   *****************************/
   @HostListener('window:scroll', [])

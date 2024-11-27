@@ -49,6 +49,10 @@ $bike: #6cb168;
                     background-color: white;
                     border-radius: 30px;
                     padding: 2px;
+
+                    &:hover {
+                        background-color: white !important;
+                    }
                 }
 
                 .content {
@@ -56,12 +60,13 @@ $bike: #6cb168;
                     align-items: center;
                     justify-content: center;
                     gap: 8px;
-                    width: 45%;
+                    width: 100%;
                     cursor: pointer;
                     border-radius: 30px;
-
+                    box-sizing: border-box;
+                    padding: 4px;
                     &:hover {
-                        background-color: #e7e1d8;
+                        background-color: #e2dada;
                     }
 
                     img {
@@ -152,6 +157,7 @@ $bike: #6cb168;
                     border: none;
                     color: rgb(53, 53, 53);
                 }
+
                 .enabled {
                     color: white;
                     background-color: #FF8001;

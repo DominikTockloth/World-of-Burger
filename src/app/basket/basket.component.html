@@ -4,14 +4,14 @@
             <h2>Warenkorb</h2>
 
             <div class="switch-box">
-                <div class="content ma-le-3 selected">
+                <div class="content ma-le-3 selected" [class.selected]="isSelected" (click)="toggleSelected()">
                     <img src="/images/orange-bike.png" alt="orange-bike">
                     <div>
                         <h5>Lieferung</h5>
                         <span>ab 16.45 Uhr</span>
                     </div>
                 </div>
-                <div class="content ma-ri-3">
+                <div class="content ma-ri-3" [class.selected]="!isSelected" (click)="toggleSelected()">
                     <img src="/images/grab-bag-black.png" alt="takeaway-bag">
                     <div>
                         <h5>Abholung</h5>
@@ -55,9 +55,11 @@
             <!----------------------------------  Total price segment starts here  ------------------------------>
             <div class="price-box" *ngIf="cartItems.length > 0">
                 <div class="sub-total"><span>Zwischensumme</span><span>{{convertToDecimal(subTotal)}} €</span></div>
-                <div class="sub-total ma-top-10" *ngIf="subTotal >= 25"><span>Lieferung</span><span>Kostenlos</span></div>
+                <div class="sub-total ma-top-10" *ngIf="subTotal >= 25"><span>Lieferung</span><span>Kostenlos</span>
+                </div>
                 <div class="total"><span>Gesamt</span><span>{{convertToDecimal(total)}} €</span></div>
-                <button [class.enabled]="total >= 25" [disabled]="total < 25">Bezahlen ({{convertToDecimal(total)}} €) </button>
+                <button [class.enabled]="total >= 25" [disabled]="total < 25">Bezahlen ({{convertToDecimal(total)}} €)
+                </button>
             </div>
         </div>
     </aside>

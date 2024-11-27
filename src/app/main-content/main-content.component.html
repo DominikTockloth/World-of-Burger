@@ -19,7 +19,8 @@
             </div>
         </div>
         <div class="search-box">
-            <img src="/images/search.png" alt=""><input type="search" placeholder="Suche in World of Burger">
+            <img src="/images/search.png" alt=""><input type="search" placeholder="Suche in World of Burger"   [(ngModel)]="searchValue"
+            (keydown)="onKeydown($event)">
         </div>
         <app-hamburger-list (productInfoOpened)="openProductInfo()"></app-hamburger-list>
         <div class="imprint">
