@@ -19,10 +19,21 @@
             </div>
         </div>
         <div class="search-box">
-            <img src="/images/search.png" alt=""><input type="search" placeholder="Suche in World of Burger"   [(ngModel)]="searchValue"
-            (keydown)="onKeydown($event)">
+            <img src="/images/search.png" alt=""><input type="search" placeholder="Suche in World of Burger"
+                [(ngModel)]="searchValue" (input)="onInput()" id="input" min="3">
         </div>
+        <!-----------------  Hamburger list content starts here  ------------------------->
         <app-hamburger-list (productInfoOpened)="openProductInfo()"></app-hamburger-list>
+        <!-----------------  Filtered Hamburger list content starts here  ------------------------->
+        <div class="list-item" *ngFor="let burger of filteredHamburgers">
+            <div class="btn-box" (click)="addToCart(burger)"> <img src="/images/add-btn.png" alt="add-button"></div>
+            <div class="title-box">
+                <h4>{{burger.name}}</h4><span (click)="openProductInfo()">Produktinfos</span>
+            </div>
+            <span class="description">{{burger.ingredients}}</span>
+            <span class="price">{{ convertDotToComma(burger.price)}} €</span>
+        </div>
+        <!-------------------------------------   Footer content ---------------------------------->
         <div class="imprint">
             <div class="head"><img src="/images/imprint.png" alt="payment"><span>Impressum</span></div>
             <span>Dominik Tockloth</span>

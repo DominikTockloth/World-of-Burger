@@ -3,9 +3,10 @@ import { HamburgerService } from '../services/hamburger.service';
 import { Hamburger } from '../models/hamburger.model';
 import { HamburgerListComponent } from '../hamburger-list/hamburger-list.component';
 import { ProductInformationComponent } from '../overlays/components/product-information/product-information.component';
-import { NgIf } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { PageInformationComponent } from '../overlays/components/page-information/page-information.component';
 import { FormsModule } from '@angular/forms';
+import { CartService, CartItem } from '../services/cart.service';
 
 @Component({
   selector: 'app-main-content',
@@ -15,6 +16,7 @@ import { FormsModule } from '@angular/forms';
     ProductInformationComponent,
     PageInformationComponent,
     NgIf,
+    NgFor,
     FormsModule
   ],
   templateUrl: './main-content.component.html',
@@ -30,28 +32,37 @@ export class MainContentComponent implements OnInit {
 
   @Output() pageInfoclosed = new EventEmitter<void>();
 
-  constructor(private hamburgerservice: HamburgerService) { }
+  constructor(private hamburgerservice: HamburgerService, private cartservice: CartService) { }
 
 
   ngOnInit(): void {
     this.hamburgers = this.hamburgerservice.getHamburgers();
-    this.filteredHamburgers = [...this.hamburgers];
   }
 
   /*****************************  Handles the search and filter functions  ********************/
-  onKeydown(event: KeyboardEvent): void {
+  onInput(): void {
     this.filterHamburgers(this.searchValue);
   }
 
   filterHamburgers(searchTerm: string): void {
-    if (!searchTerm.trim()) {
-      this.filteredHamburgers = [...this.hamburgers]; // Zeige alle, wenn keine Eingabe
-    } else {
-      this.filteredHamburgers = this.hamburgers.filter(hamburger =>
-        hamburger.name.toLowerCase().includes(this.searchValue.toLowerCase()) || // Filter by name
-        hamburger.category.toLowerCase().includes(this.searchValue.toLowerCase()) // Filter by category
-      );
-    }
+    //  if (!searchTerm.trim()) {
+    //   this.filteredHamburgers = [...this.hamburgers]; // Zeige alle, wenn keine Eingabe
+    // } else {
+    this.filteredHamburgers = this.hamburgers.filter(hamburger =>
+      hamburger.name.toLowerCase().includes(this.searchValue.toLowerCase())  // Filter by name
+    );
+    //}
+  }
+
+  // Add one item to cart
+  addToCart(product: any): void {
+    const cartItem: CartItem = { ...product, quantity: 1 }; // Standardmäßig 1 Stück
+    this.cartservice.addToCart(cartItem);
+  }
+
+  // Replaces the dot with the comma
+  convertDotToComma(price: number) {
+    return price.toFixed(2).replace('.', ',')
   }
   /*****************************  Handles the product-information overlay  ********************/
   openProductInfo(): void {

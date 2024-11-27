@@ -184,6 +184,85 @@ $bike: #6cb168;
             object-fit: cover;
         }
     }
+
+    .list-item {
+        width: 100%;
+        min-height: 120px;
+        box-sizing: border-box;
+        padding: 16px;
+        border: 1px solid rgba(0, 0, 0, 0.4);
+        border-radius: 15px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        font-family: "Poppins", sans-serif;
+
+        .btn-box {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(0, 0, 0, 0.4);
+            border-radius: 100%;
+            box-sizing: border-box;
+            padding: 8px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: rgb(231, 228, 228);
+            }
+
+            img {
+                height: 25px;
+                width: 25px;
+                object-fit: cover;
+            }
+        }
+
+        .title-box {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+
+            h4,
+            .price {
+                font-size: 20px;
+                font-weight: 600;
+                color: black;
+            }
+
+            span {
+                font-size: 13px;
+                font-weight: 400;
+                color: rgb(27, 27, 27);
+                text-decoration: underline;
+                cursor: pointer;
+
+                &:hover {
+                    text-decoration: none;
+                    color: black;
+                }
+            }
+        }
+
+        .description {
+            font-size: 15px;
+            font-weight: 400;
+            color: rgb(26, 25, 25);
+        }
+
+        .price {
+            font-size: 20px;
+            font-weight: 600;
+            color: black;
+        }
+
+    }
 }
 
 app-hamburger-list {
