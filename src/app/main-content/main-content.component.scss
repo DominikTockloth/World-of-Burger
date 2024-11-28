@@ -147,6 +147,13 @@ $bike: #6cb168;
                 }
             }
         }
+
+        .filtered-box {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin-top: 50px;
+        }
     }
 
     .search-box {

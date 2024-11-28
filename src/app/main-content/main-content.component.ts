@@ -27,6 +27,7 @@ export class MainContentComponent implements OnInit {
   isPageInfoOpen: boolean = false;
   isHeartFilled: boolean = false;
   hamburgers: Hamburger[] = [];
+  groupedHamburgers: { category: string; burgers: Hamburger[]; image: string }[] = [];
   filteredHamburgers: Hamburger[] = [];
   searchValue: string = '';
 
@@ -37,6 +38,20 @@ export class MainContentComponent implements OnInit {
 
   ngOnInit(): void {
     this.hamburgers = this.hamburgerservice.getHamburgers();
+
+    // Group burgers by its category
+    const grouped = this.hamburgers.reduce((acc, hamburger) => {
+      acc[hamburger.category] = acc[hamburger.category] || [];
+      acc[hamburger.category].push(hamburger);
+      return acc;
+    }, {} as { [key: string]: Hamburger[] });
+
+    // Get the category image by checking the burger category
+    this.groupedHamburgers = Object.entries(grouped).map(([category, burgers]) => ({
+      category,
+      burgers,
+      image: this.hamburgerservice.getCategoryImage(category), // Get category image
+    }));
   }
 
   /*****************************  Handles the search and filter functions  ********************/
@@ -45,13 +60,14 @@ export class MainContentComponent implements OnInit {
   }
 
   filterHamburgers(searchTerm: string): void {
-    //  if (!searchTerm.trim()) {
-    //   this.filteredHamburgers = [...this.hamburgers]; // Zeige alle, wenn keine Eingabe
-    // } else {
-    this.filteredHamburgers = this.hamburgers.filter(hamburger =>
-      hamburger.name.toLowerCase().includes(this.searchValue.toLowerCase())  // Filter by name
-    );
-    //}
+    if (!searchTerm.trim()) {
+      this.groupedHamburgers;
+    } else {
+      this.filteredHamburgers = this.hamburgers.filter(hamburger =>
+        hamburger.name.toLowerCase().includes(this.searchValue.toLowerCase())  // Filter by name
+      );
+    }
+
   }
 
   // Add one item to cart
@@ -97,3 +113,4 @@ export class MainContentComponent implements OnInit {
   }
 
 }
+

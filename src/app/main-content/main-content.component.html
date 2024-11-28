@@ -23,15 +23,17 @@
                 [(ngModel)]="searchValue" (input)="onInput()" id="input" min="3">
         </div>
         <!-----------------  Hamburger list content starts here  ------------------------->
-        <app-hamburger-list (productInfoOpened)="openProductInfo()"></app-hamburger-list>
+        <app-hamburger-list (productInfoOpened)="openProductInfo()" *ngIf="!this.searchValue"></app-hamburger-list>
         <!-----------------  Filtered Hamburger list content starts here  ------------------------->
-        <div class="list-item" *ngFor="let burger of filteredHamburgers">
-            <div class="btn-box" (click)="addToCart(burger)"> <img src="/images/add-btn.png" alt="add-button"></div>
-            <div class="title-box">
-                <h4>{{burger.name}}</h4><span (click)="openProductInfo()">Produktinfos</span>
+        <div class="filtered-box" *ngIf="this.searchValue">
+            <div class="list-item" *ngFor="let burger of filteredHamburgers">
+                <div class="btn-box" (click)="addToCart(burger)"> <img src="/images/add-btn.png" alt="add-button"></div>
+                <div class="title-box">
+                    <h4>{{burger.name}}</h4><span (click)="openProductInfo()">Produktinfos</span>
+                </div>
+                <span class="description">{{burger.ingredients}}</span>
+                <span class="price">{{ convertDotToComma(burger.price)}} €</span>
             </div>
-            <span class="description">{{burger.ingredients}}</span>
-            <span class="price">{{ convertDotToComma(burger.price)}} €</span>
         </div>
         <!-------------------------------------   Footer content ---------------------------------->
         <div class="imprint">
@@ -45,5 +47,6 @@
     </div>
 </section>
 
+<!--------------------------------------------   Overlays content starts here  ---------------------->
 <app-product-information *ngIf="isProductInfoOpen" (productInfoClosed)="closeProductInfo()"></app-product-information>
 <app-page-information *ngIf="isPageInfoOpen" (pageInfoClosed)="closePageInfo()"></app-page-information>
