@@ -7,6 +7,7 @@ import { NgFor, NgIf } from '@angular/common';
 import { PageInformationComponent } from '../overlays/components/page-information/page-information.component';
 import { FormsModule } from '@angular/forms';
 import { CartService, CartItem } from '../services/cart.service';
+import { OrderMessageComponent } from '../overlays/components/order-message/order-message.component';
 
 @Component({
   selector: 'app-main-content',
@@ -15,6 +16,7 @@ import { CartService, CartItem } from '../services/cart.service';
     HamburgerListComponent,
     ProductInformationComponent,
     PageInformationComponent,
+    OrderMessageComponent,
     NgIf,
     NgFor,
     FormsModule
@@ -26,6 +28,7 @@ export class MainContentComponent implements OnInit {
   isProductInfoOpen: boolean = false;
   isPageInfoOpen: boolean = false;
   isHeartFilled: boolean = false;
+
   hamburgers: Hamburger[] = [];
   groupedHamburgers: { category: string; burgers: Hamburger[]; image: string }[] = [];
   filteredHamburgers: Hamburger[] = [];
@@ -67,7 +70,6 @@ export class MainContentComponent implements OnInit {
         hamburger.name.toLowerCase().includes(this.searchValue.toLowerCase())  // Filter by name
       );
     }
-
   }
 
   // Add one item to cart
@@ -80,6 +82,7 @@ export class MainContentComponent implements OnInit {
   convertDotToComma(price: number) {
     return price.toFixed(2).replace('.', ',')
   }
+  
   /*****************************  Handles the product-information overlay  ********************/
   openProductInfo(): void {
     this.isProductInfoOpen = true;

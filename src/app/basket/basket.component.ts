@@ -1,6 +1,7 @@
 import { NgClass, NgFor, NgIf } from '@angular/common';
-import { Component, ElementRef, HostListener, OnInit, Renderer2 } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, OnInit, Output, Renderer2 } from '@angular/core';
 import { CartService, CartItem } from '../services/cart.service';
+import { OrderMessageComponent } from '../overlays/components/order-message/order-message.component';
 
 @Component({
   selector: 'app-basket',
@@ -8,13 +9,17 @@ import { CartService, CartItem } from '../services/cart.service';
   imports: [
     NgIf,
     NgFor,
-    NgClass
+    NgClass,
+    OrderMessageComponent
   ],
   templateUrl: './basket.component.html',
   styleUrl: './basket.component.scss'
 })
 
 export class BasketComponent implements OnInit {
+  @Output() orderMessageOpened = new EventEmitter<void>();
+
+  isOrderMessageOpen: boolean = false;
   isSelected: boolean = true;
   isBasketEmpty: boolean = false;
   cartItems: CartItem[] = [];
@@ -83,6 +88,18 @@ export class BasketComponent implements OnInit {
   toggleSelected() {
     this.isSelected = !this.isSelected;
   }
+
+  /***********************************  Handles the order-message overlay  *************************/
+  openOrderMessage() {
+    this.isOrderMessageOpen = true;
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => {
+      this.cartservice.clearCart();
+      this.isOrderMessageOpen = false;
+      document.body.style.overflow = '';
+    }, 3500)
+  }
+
   /*************   This handles the sticky basket on scroll   *****************************/
   @HostListener('window:scroll', [])
   onWindowScroll() {

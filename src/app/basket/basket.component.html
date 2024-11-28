@@ -58,9 +58,12 @@
                 <div class="sub-total ma-top-10" *ngIf="subTotal >= 25"><span>Lieferung</span><span>Kostenlos</span>
                 </div>
                 <div class="total"><span>Gesamt</span><span>{{convertToDecimal(total)}} €</span></div>
-                <button [class.enabled]="total >= 25" [disabled]="total < 25">Bezahlen ({{convertToDecimal(total)}} €)
+                <button [class.enabled]="total >= 25" [disabled]="total < 25" (click)="openOrderMessage()">Bezahlen
+                    ({{convertToDecimal(total)}} €)
                 </button>
             </div>
         </div>
     </aside>
 </section>
+
+<app-order-message *ngIf="isOrderMessageOpen"></app-order-message>
